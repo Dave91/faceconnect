@@ -24,5 +24,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'image'=> $faker->image('public/images',100,100, null, false),
         'dob'=> $faker->date,
         'remember_token' => str_random(10),
+        'created_at' => Carbon\Carbon::now()->subDays(rand(0, 365)),
     ];
 });
