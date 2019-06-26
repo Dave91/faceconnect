@@ -11,13 +11,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        foreach (range(1,10) as $index) {
-            DB::table('users')->insert([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'password' => bcrypt('secret'),
-            ]);
-        }
+        // Create the first usable user account
+        App\User::create([
+            'name' => 'Your Name',
+            'email' => 'your@email.com',
+            'dob' => '1991-11-01',
+            'password' => bcrypt('password'),
+        ]);
+
+        // Create 9 other users
+        factory(App\User::class, 9)->create();
     }
 }
